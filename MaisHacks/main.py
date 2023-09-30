@@ -3,13 +3,21 @@ from PIL import Image
 import cv2
 import pytesseract
 from re import search
+import numpy as np
 
 # Setting the path for Tesseract
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-def readImage(img_path):
-    img_cv = cv2.imread(img_path)
-    readData = pytesseract.image_to_string(img_cv, lang='eng')
+def readImage(image):
+    # Convert PIL Image to OpenCV format
+    img_cv = np.array(image)
+    img_cv = cv2.cvtColor(img_cv, cv2.COLOR_RGB2BGR)
+
+    # Preprocessing
+    img_cv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)
+    _, img_cv = cv2.threshold(img_cv, 128, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
+    readData = pytesseract.image_to_string(img_cv, lang='eng', config='--psm 6')
 
     calories = fat = sodium = sugars = Protein = -1
 
@@ -75,12 +83,7 @@ if uploaded_file:
     st.image(image, caption="Uploaded Image.", use_column_width=True)
     st.write("Processing...")
 
-    # Save the uploaded image to a temporary location
-    temp_path = r"C:\Users\zixin.deng\OneDrive - Vffice\Desktop\MAISPROJECT\temp_img.jpg"
-    with open(temp_path, "wb") as f:
-        f.write(uploaded_file.getbuffer())
-
-    results = readImage(temp_path)
+    results = readImage(image)
 
     st.write("Here are the extracted nutrition details:")
     st.json(results)
