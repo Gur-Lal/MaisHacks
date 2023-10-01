@@ -57,5 +57,3 @@ def readImage(src):
         "Protein": Protein
     }
     return dictFood
-
-readImage()
