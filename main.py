@@ -105,7 +105,7 @@ def is_healthy_food(dictFood, weight, age):
         return False
 
 # Streamlit UI
-st.title("Nutrition Information Extractor")
+st.title("PocketNutrition")
 st.write('---')
 
 # Improved layout with columns
