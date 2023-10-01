@@ -33,7 +33,7 @@ for member, info in team_members.items():
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
 
 # Set up OpenAI API key
-openai.api_key = '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'
+openai.api_key = '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'
 
 def readImage(image):
     img_cv = np.array(image)
