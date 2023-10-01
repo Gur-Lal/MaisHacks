@@ -76,10 +76,10 @@ if uploaded_file:
 
     image = Image.open(uploaded_file)
     st.image(image, caption="Uploaded Image.", use_column_width=True)
-    st.write("Processing...")
-    results = readImage(image)
-    st.write("Extracted nutrition details:")
-    st.json(results)
+    with st.spinner("Processing..."):
+        results = readImage(image)
+        st.write("Extracted nutrition details:")
+        st.json(results)
 
     if is_healthy_food(results, weight, age):
         st.success("This seems like a healthy food choice for you!")
