@@ -18,10 +18,10 @@ st.image(logo_path, width=200)  # Adjust width as needed
 st.sidebar.header('Team Members')
 
 team_members = {
-    'Member 1': 'Member 1 is passionate about nutrition and has expertise in diet planning.',
-    'Member 2': 'Member 2 has a background in computer science and specializes in AI.',
-    'Member 3': 'Member 3 is a fitness enthusiast and brings knowledge of physical well-being.',
-    'Member 4': 'Member 4 is the team researcher, focusing on nutritional science and dietary needs.',
+    'Syed Bilal Afzal': 'Bilal is a U1 Computer Engineering Student at Mcgill and is interested in making a positive impact on your health!',
+    'Gur Lal': 'Gur is year one in software engineering at Concordia. He\'s passionate about AI and space.',
+    'Mona Liu': 'Mona is a U0 student hoping to pursue computer science. This is her first time working with AI. She loves design and helping others.',
+    'Jiucheng Zang': 'Jiucheng is a U0 Computer Science student at University of Waterloo. He loves tinkering with AI in his free time'
 }
 
 for member, info in team_members.items():
