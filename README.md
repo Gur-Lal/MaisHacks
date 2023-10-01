@@ -1,5 +1,8 @@
 # Wise Bite - The Nutrition Information Extractor
 
+![image](https://github.com/Gur-Lal/MaisHacks/assets/123880338/d10aaec6-ceba-4869-b101-70c72a7d83b8)
+
+
 ## Overview:
 Wise Bite is a cutting-edge nutrition information extractor that transforms the way you perceive and consume food. It analyzes the nutritional content of food items and provides you with actionable insights to make healthier food choices.
 
