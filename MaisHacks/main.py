@@ -6,8 +6,9 @@ from os import system
 
 pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
 
-def readImage():
-    img_cv = imread(r'img.jpg')
+
+def readImage(src):
+    img_cv = imread(f"uploads/{src}")
     # img_cv = cvtColor(img_cv, COLOR_BGR2RGB)
     readData = pytesseract.image_to_string(img_cv, lang='eng')
 
