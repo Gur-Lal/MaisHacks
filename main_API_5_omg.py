@@ -11,7 +11,7 @@ import numpy as np
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
 
 # Set up OpenAI API key
-openai.api_key = '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'
+openai.api_key = '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'
 
 def readImage(image):
     img_cv = np.array(image)
@@ -97,20 +97,21 @@ if uploaded_file:
     advice_container = st.container()
     with advice_container:
         st.subheader("Initial Nutritional Diagnosis")
-        try:
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "Act as my personal nutritional specialist."},
-                    {"role": "user", "content": user_prompt}
-                ],
-                temperature=0.8,
-                max_tokens=300
-            )
-            advice = response['choices'][0]['message']['content'].strip()
-            st.write(advice)
-        except Exception as e:
-            st.error(f"Error obtaining initial nutritional advice: {str(e)}")
+        with st.spinner("Preparing diagnosis..."):
+            try:
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": "Act as my personal nutritional specialist."},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    temperature=0.8,
+                    max_tokens=300
+                )
+                advice = response['choices'][0]['message']['content'].strip()
+                st.write(advice)
+            except Exception as e:
+                st.error(f"Error obtaining initial nutritional advice: {str(e)}")
 
     chat_container = st.container()
     with chat_container:
@@ -118,19 +119,20 @@ if uploaded_file:
         user_input = st.text_input("You are welcome to ask me for more healthy advice!:")
         
         if user_input:
-            try:
-                response = openai.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {"role": "system", "content": "Act as my personal nutritional specialist and keep your output to 300 charachters. Rmemeber to alwasy be kind and ask me if I have anymore questions as you are here to help make a POSTIVE IMPACT ON MY LIFE!."},
-                        {"role": "user", "content": user_input}
-                    ],
-                    temperature=0.7,
-                    max_tokens=350
-                )
-                st.write("Gitana:", response['choices'][0]['message']['content'].strip())
-            except Exception as e:
-                st.error(f"Error obtaining chat response: {str(e)}")
+            with st.spinner("Gitana is thinking..."):
+                try:
+                    response = openai.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages=[
+                            {"role": "system", "content": "Act as my personal nutritional specialist and keep your output to 300 charachters. Rmemeber to alwasy be kind and ask me if I have anymore questions as you are here to help make a POSTIVE IMPACT ON MY LIFE!."},
+                            {"role": "user", "content": user_input}
+                        ],
+                        temperature=0.7,
+                        max_tokens=350
+                    )
+                    st.write(response['choices'][0]['message']['content'].strip())
+                except Exception as e:
+                    st.error(f"Error obtaining chat response: {str(e)}")
 
 
 st.write('---')
