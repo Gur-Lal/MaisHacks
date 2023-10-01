@@ -41,5 +41,5 @@ Jiucheng Zang: Jiucheng is a U0 Computer Science student at the University of Wa
 Additional Resources:
 For detailed nutritional guidelines, please refer to Canada's Dietary Guidelines.
 
-Note:
-Remember to replace the placeholder API key with your actual OpenAI API key in the source code.
+# Note:
+# Remember to replace the placeholder API key with your actual OpenAI API key in the source code.
