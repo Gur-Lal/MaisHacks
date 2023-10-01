@@ -7,10 +7,10 @@ import pytesseract
 from re import search
 import numpy as np
 
-# Setting the path for Tesseract
+
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
 
-# Set up OpenAI API key
+
 openai.api_key = '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'
 
 def readImage(image):
