@@ -7,6 +7,28 @@ import pytesseract
 from re import search
 import numpy as np
 
+
+st.set_page_config(page_title='Nutrition Information Extractor', page_icon=':apple:')
+
+# Add logo at the top
+logo_path = "logo_noBackground.png"
+st.image(logo_path, width=200)  # Adjust width as needed
+
+# Add team information in the sidebar
+st.sidebar.header('Team Members')
+
+team_members = {
+    'Member 1': 'Member 1 is passionate about nutrition and has expertise in diet planning.',
+    'Member 2': 'Member 2 has a background in computer science and specializes in AI.',
+    'Member 3': 'Member 3 is a fitness enthusiast and brings knowledge of physical well-being.',
+    'Member 4': 'Member 4 is the team researcher, focusing on nutritional science and dietary needs.',
+}
+
+for member, info in team_members.items():
+    st.sidebar.subheader(member)
+    st.sidebar.write(info)
+
+
 # Setting the path for Tesseract
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
 
@@ -53,7 +75,8 @@ def is_healthy_food(dictFood, weight, age):
 
     return 20 <= fat_percentage <= 35 and 10 <= protein_percentage <= 35 and sodium_lower <= sodium <= sodium_upper
 
-st.title("Nutrition Information Extractor")
+st.title("Wise Bite - The Nutrition Information Extractor")
+st.subheader('From Binary to Dietary - We\'ve Got You Covered!')
 st.write('---')
 
 col1, col2 = st.columns(2)
