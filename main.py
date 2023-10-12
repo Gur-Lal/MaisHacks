@@ -22,7 +22,7 @@ team_members = {
     'Syed Bilal Afzal': 'Bilal is a U1 computer engineering Student at Mcgill and is interested in making a positive impact on your health!',
     'Gur Lal': 'Gur is a U1 software engineering at Concordia. He\'s passionate about AI and space.',
     'Mona Liu': 'Mona is a U0 student hoping to pursue computer science. This is her first time working with AI. She loves design and helping others.',
-    'Jiucheng Zang': 'Jiucheng is a U0 computer science student at University of Waterloo. He loves tinkering with AI in his free time'
+    'Jiucheng Zang': 'Jiucheng is a U0 computer Science student at University of Waterloo. He loves tinkering with AI in his free time'
 }
 
 for member, info in team_members.items():
@@ -109,6 +109,56 @@ if uploaded_file:
         st.success("This seems like a healthy food choice for you!")
     else:
         st.warning("This might not be the healthiest choice for you. Consider something lighter!")
+
+'''
+    user_prompt = f"Act as my personal nutritional specialist and advise me on the following nutrition information:\n"
+    user_prompt += f"Calories: {results['Calories']}\n"
+    user_prompt += f"Fat: {results['Fat']}\n"
+    user_prompt += f"Sodium: {results['Sodium']}\n"
+    user_prompt += f"Sugars: {results['Sugars']}\n"
+    user_prompt += f"Protein: {results['Protein']}\n"
+    user_prompt += f"Hey my name is {name} and I am {age} years old and I weigh {weight} kg, what would be your nutritional advice to me?  Rmemeber to alwasy be kind and ask me if I have anymore questions as you are here to help make a POSTIVE IMPACT ON MY LIFE and keep your out put to 300 characters!\n"
+
+    advice_container = st.container()
+    with advice_container:
+        st.subheader("Initial Nutritional Diagnosis")
+        with st.spinner("Preparing diagnosis..."):
+            try:
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": "Act as my personal nutritional specialist."},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    temperature=0.8,
+                    max_tokens=300
+                )
+                advice = response['choices'][0]['message']['content'].strip()
+                st.write(advice)
+            except Exception as e:
+                st.error(f"Error obtaining initial nutritional advice: {str(e)}")
+
+    chat_container = st.container()
+    with chat_container:
+        st.subheader("Ask Gitana")
+        user_input = st.text_input("You are welcome to ask me for more healthy advice!:")
+        
+        if user_input:
+            with st.spinner("Gitana is thinking..."):
+                try:
+                    response = openai.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages=[
+                            {"role": "system", "content": "Act as my personal nutritional specialist and keep your output to 300 charachters. Rmemeber to alwasy be kind and ask me if I have anymore questions as you are here to help make a POSTIVE IMPACT ON MY LIFE!."},
+                            {"role": "user", "content": user_input}
+                        ],
+                        temperature=0.7,
+                        max_tokens=350
+                    )
+                    st.write(response['choices'][0]['message']['content'].strip())
+                except Exception as e:
+                    st.error(f"Error obtaining chat response: {str(e)}")
+'''
 
 st.write('---')
 st.markdown("For detailed nutritional guidelines, please refer to [Canada's Dietary Guidelines](https://www.canada.ca/en/health-canada/services/food-nutrition/healthy-eating/dietary-reference-intakes/tables/reference-values-macronutrients-dietary-reference-intakes-tables-2005.html)")
