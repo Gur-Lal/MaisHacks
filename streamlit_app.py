@@ -29,12 +29,8 @@ for member, info in team_members.items():
     st.sidebar.subheader(member)
     st.sidebar.write(info)
 
-
 # Setting the path for Tesseract
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
-
-# Set up OpenAI API key
-# openai.api_key = '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'
 
 def readImage(image):
     img_cv = np.array(image)
@@ -115,5 +111,5 @@ st.markdown("For detailed nutritional guidelines, please refer to [Canada's Diet
 
 for fname in os.listdir("uploads"):
     fpath = os.path.join("uploads", fname)
-    if os.path.isfile(fpath):
-        os.remove(fpath)
+    #if os.path.isfile(fpath):
+        #os.remove(fpath)

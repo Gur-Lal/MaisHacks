@@ -34,7 +34,7 @@ for member, info in team_members.items():
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
 
 # Set up OpenAI API key
-# openai.api_key = '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'
+openai.api_key = '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'
 
 def readImage(image):
     img_cv = np.array(image)
@@ -110,7 +110,6 @@ if uploaded_file:
     else:
         st.warning("This might not be the healthiest choice for you. Consider something lighter!")
 
-'''
     user_prompt = f"Act as my personal nutritional specialist and advise me on the following nutrition information:\n"
     user_prompt += f"Calories: {results['Calories']}\n"
     user_prompt += f"Fat: {results['Fat']}\n"
@@ -158,12 +157,12 @@ if uploaded_file:
                     st.write(response['choices'][0]['message']['content'].strip())
                 except Exception as e:
                     st.error(f"Error obtaining chat response: {str(e)}")
-'''
+
 
 st.write('---')
 st.markdown("For detailed nutritional guidelines, please refer to [Canada's Dietary Guidelines](https://www.canada.ca/en/health-canada/services/food-nutrition/healthy-eating/dietary-reference-intakes/tables/reference-values-macronutrients-dietary-reference-intakes-tables-2005.html)")
 
 for fname in os.listdir("uploads"):
     fpath = os.path.join("uploads", fname)
-    if os.path.isfile(fpath):
-        os.remove(fpath)
+    #if os.path.isfile(fpath):
+        #os.remove(fpath)
