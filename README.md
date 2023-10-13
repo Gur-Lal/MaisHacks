@@ -35,7 +35,7 @@ Wise Bite is a cutting-edge nutrition information extractor that transforms the 
 
 
 
-## Open your web browser and go to http://localhost:8501 to view the app.
+## Run the code, copy paste the command and open your web browser and go to http://localhost:8501 to view the app.
 ### Team Members:
 Syed Bilal Afzal: Bilal is a U1 computer engineering Student at McGill who is passionate about making a positive impact on your health!
 Gur Lal: Gur is a U1 in software engineering at Concordia. He's passionate about AI and space.
